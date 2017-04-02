@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+	   xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:task="http://www.springframework.org/schema/task"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+							http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+							http://www.springframework.org/schema/tx
+							http://www.springframework.org/schema/tx/spring-tx-3.2.xsd
+							http://www.springframework.org/schema/context
+							http://www.springframework.org/schema/context/spring-context-3.2.xsd
+							http://www.springframework.org/schema/task
+							http://www.springframework.org/schema/task/spring-task-3.0.xsd">
+	<context:annotation-config/>
+
+	<!--<bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="location" value="classpath*:wph4jsf.properties"/>
+	</bean>
+
+	<context:property-placeholder location="classpath*:wph4jsf.properties"/>-->
+
+	<context:component-scan base-package="org.wpattern"/>
+
+	<bean id="CategoryDao" class="org.wpattern.daos.CategoryDao"></bean>
+
+
+
+	<!--<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">-->
+	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<property name="url" value="jdbc:mysql://localhost:3306/wproject" />
+		<property name="username" value="root" />
+		<property name="password" value="" />
+		<!--<property name="initialSize" value="${wph4jsf.database.pool.initialSize}" />
+		<property name="minIdle" value="${wph4jsf.database.pool.minIdle}" />
+		<property name="maxActive" value="${wph4jsf.database.pool.maxActive}" />
+		<property name="maxIdle" value="${wph4jsf.database.pool.maxIdle}" />
+		<property name="maxWait" value="${wph4jsf.database.pool.maxWait}" />
+		<property name="testOnBorrow" value="${wph4jsf.database.pool.testOnBorrow}" />
+		<property name="testOnReturn" value="${wph4jsf.database.pool.testOnReturn}" />
+		<property name="testWhileIdle" value="${wph4jsf.database.pool.testWhileIdle}" />
+		<property name="defaultAutoCommit" value="${wph4jsf.database.pool.defaultAutoCommit}" />
+		&lt;!&ndash;<property name="validationQuery" value="${wph4jsf.database.pool.validationQuery}" />&ndash;&gt;
+		<property name="removeAbandoned" value="${wph4jsf.database.pool.removeAbandoned}" />
+		<property name="removeAbandonedTimeout" value="${wph4jsf.database.pool.removeAbandonedTimeout}" />
+		<property name="logAbandoned" value="${wph4jsf.database.pool.logAbandoned}" />
+		<property name="timeBetweenEvictionRunsMillis" value="${wph4jsf.database.pool.timeBetweenEvictionRunsMillis}" />
+		<property name="minEvictableIdleTimeMillis" value="${wph4jsf.database.pool.minEvictableIdleTimeMillis}" />-->
+	</bean>
+
+	<bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean"
+			p:packagesToScan="org.wpattern"
+			p:dataSource="dataSource" p:dataSource-ref="dataSource">
+
+		<property name="jpaVendorAdapter">
+			<bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+				<property name="generateDdl" value="true" />
+				<property name="showSql" value="true" />
+			</bean>
+		</property>
+
+		<!--<property name="persistenceUnitManager" value="persistenceUnitManager"/>-->
+	</bean>
+
+	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+		<property name="entityManagerFactory" ref="entityManagerFactory"/>
+		<property name="jpaDialect">
+			<bean class="org.springframework.orm.jpa.vendor.HibernateJpaDialect"/>
+		</property>
+	</bean>
+
+
+
+	<tx:annotation-driven transaction-manager="transactionManager"/>
+    </beans>
