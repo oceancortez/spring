@@ -1,0 +1,97 @@
+<web-app xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+	http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	version="2.5">
+
+	<display-name>Spring3 MVC Application</display-name>
+
+	<!-- DEFAULT PAGE -->
+	<welcome-file-list>
+		<welcome-file>index.jsp</welcome-file>
+	</welcome-file-list>
+
+
+	<servlet>
+		<servlet-name>spring-web</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+
+
+	<servlet-mapping>
+		<servlet-name>spring-web</servlet-name>
+		<url-pattern>/</url-pattern>
+	</servlet-mapping>
+
+	<!-- SPRING LISTENER -->
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+
+
+	<!-- LOADER OF SPRING CONTEXT -->
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>
+            classpath:oxi-spring-security.xml
+        </param-value>
+	</context-param>
+
+
+
+	<filter>
+		<filter-name>springSecurityFilterChain</filter-name>
+		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+	</filter>
+
+
+	<filter-mapping>
+		<filter-name>springSecurityFilterChain</filter-name>
+		<url-pattern>/*</url-pattern>
+		<dispatcher>FORWARD</dispatcher>
+		<dispatcher>REQUEST</dispatcher>
+	</filter-mapping>
+
+
+
+
+<!--
+	<jsp-config>
+		<jsp-property-group>
+			<url-pattern>/**</url-pattern>
+			<el-ignored>false</el-ignored>
+		</jsp-property-group>
+	</jsp-config> -->
+
+
+
+	<!-- TIMEOUT TO SESSION EXPIRE -->
+	<session-config>
+		<session-timeout>30</session-timeout>
+	</session-config>
+
+	<!-- <error-page> <error-code>404</error-code>
+	 <location>/WEB-INF/views/jsp/error/not-found.jsp</location>
+		</error-page> <error-page> <exception-type>java.lang.Exception</exception-type>
+		<location>/WEB-INF/views/jsp/error/uncaught-error.jsp</location> </error-page> -->
+
+
+	<!-- <listener> <listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>
+		</listener> -->
+
+	<!-- LOADER OF SPRING CONTEXT -->
+	<!-- <context-param> <param-name>contextConfigLocation</param-name>
+	 <param-value>ctx-oxi-spring-resteasy-consumes-service.xml</param-value>
+		<param-value>ctx-oxi-spring-resteasy-request-mapping.xml</param-value>
+		 </context-param> -->
+
+
+	<!-- security constraint (block access of code from xhtml -->
+	<!-- <security-constraint> <display-name>block-access-xhtml</display-name>
+		<web-resource-collection> <web-resource-name>faces files</web-resource-name>
+		<url-pattern>*.faces</url-pattern> </web-resource-collection> </security-constraint> -->
+
+	<!-- SPRING SECURITY FILTER -->
+
+
+</web-app>
