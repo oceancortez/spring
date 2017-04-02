@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+	xmlns:beans="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+						http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+						http://www.springframework.org/schema/security
+						http://www.springframework.org/schema/security/spring-security-3.2.xsd">
+
+	<beans:bean id="customAuthenticationProvider"
+		class="org.omc.support.settings.CustomAuthenticationProvider" />
+	
+
+	    <http auto-config="true" use-expressions="true">
+	    <intercept-url pattern="/rest/*" access="permitAll"/>
+		<intercept-url pattern="/index.jsp" access="permitAll" />
+		<intercept-url pattern="/login.xhtml" access="permitAll" />
+		<intercept-url pattern="/public" access="permitAll" />		
+		<intercept-url pattern="/resources/**" access="hasAuthority('ROLE_USER') OR hasAuthority('ROLE_ADMIN')" />
+		<intercept-url pattern="/pages/user/**" access="hasAuthority('ROLE_ADMIN')" />
+		<intercept-url pattern="/pages/category/**"  access="hasAuthority('ROLE_USER') OR hasAuthority('ROLE_ADMIN')"/>
+		<intercept-url pattern="/pages/product/**"  access="hasAuthority('ROLE_USER') OR hasAuthority('ROLE_ADMIN')"/>
+		<intercept-url pattern="/rest/**" access="permitAll"/>
+
+		<form-login login-page="/login.xhtml"
+			authentication-failure-url="/login.xhtml?erro=true"
+			default-target-url="/pages/main.xhtml" />
+
+		<session-management invalid-session-url="/login.xhtml">
+			<concurrency-control max-sessions="1" />
+		</session-management>
+		<access-denied-handler error-page="/public/errors/error_access_danied.xhtml"/>
+		<logout logout-success-url="/login.xhtml" />
+	</http>	 
+
+	<authentication-manager>
+		<authentication-provider ref="customAuthenticationProvider" />
+	</authentication-manager>	
+	
+</beans:beans>

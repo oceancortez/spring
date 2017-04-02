@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+	version="3.1">
+	<!-- DEFAULT PAGE -->
+	<welcome-file-list>
+		<welcome-file>index.jsp</welcome-file>
+	</welcome-file-list>
+
+	<!-- TIMEOUT TO SESSION EXPIRE -->
+	<session-config>
+		<session-timeout>30</session-timeout>
+	</session-config>
+	
+		
+    <!-- Para utilizar o easyrest-spring deve-se montar conforme abaixo  -->
+
+	<listener>
+		<listener-class>org.jboss.resteasy.plugins.server.servlet.ResteasyBootstrap</listener-class>
+	</listener>	
+	
+	<!--  <listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener> -->
+	
+	<listener>
+		<listener-class>org.jboss.resteasy.plugins.spring.SpringContextLoaderListener</listener-class>
+	</listener>
+	
+	<servlet>
+		<servlet-name>resteasy-servlet</servlet-name>
+		<servlet-class>org.jboss.resteasy.plugins.server.servlet.HttpServletDispatcher</servlet-class>
+	</servlet>	
+	
+	<listener>
+	<listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>
+    </listener>
+	
+	<!--PARA FAZER A INTEGRAÇÃO COM O SPRING > PRECISA CRIAR O ARQUIVO >> applicationContext.xml -->	
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>
+            classpath:applicationContext.xml
+            classpath:omc-jsf-primefaces-spring-security.xml
+        </param-value>
+	</context-param>
+
+	<servlet-mapping>
+		<servlet-name>resteasy-servlet</servlet-name>
+		<!-- Inclui o camnho /rest e incluir na clase JSONService na anntation	@Path -->
+		<url-pattern>/rest/*</url-pattern>
+	</servlet-mapping>
+	
+	<!-- Atenção!!!! [Deixei este código abaixo para lembra que ele não fuciona!!!!]	
+	<context-param>
+    <param-name>resteasy.servlet.mapping.prefix</param-name>
+    <param-value>/rest</param-value>
+    </context-param> -->
+	<!--While using Spring integration set resteasy.scan to false or don't configure 
+		resteasy.scan parameter at all -->
+	<!-- <context-param>
+		<param-name>resteasy.scan</param-name>
+		<param-value>false</param-value>
+	</context-param> -->
+	<!-- Integração com  RESTEasy And HttpClient -->
+	<!-- Atenção!!!! [Deixei este código acima para lembra que ele não fuciona!!!!]	-->
+
+
+	<!-- PRIMEFACES THEME CONFIG -->
+	<context-param>
+		<param-name>primefaces.THEME</param-name>
+		<!--<param-value>bootstrap</param-value> -->
+		<param-value>bootstrap</param-value>
+	</context-param>
+
+	<!-- JAVASERVER FACES -->
+	<!-- Change to "Production" when ready to deploy. -->
+	<context-param>
+		<param-name>javax.faces.PROJECT_STAGE</param-name>
+		<param-value>Development</param-value>
+	</context-param>
+
+	<servlet>
+		<servlet-name>Faces Servlet</servlet-name>
+		<servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>Faces Servlet</servlet-name>
+		<url-pattern>*.xhtml</url-pattern>
+	</servlet-mapping>
+
+
+	 <!-- security constraint (block access of code from xhtml -->
+         <security-constraint> <display-name>block-access-xhtml</display-name> 
+		<web-resource-collection> <web-resource-name>faces files</web-resource-name> 
+		<url-pattern>*.faces</url-pattern> </web-resource-collection> </security-constraint>
+
+	<!-- SPRING SECURITY FILTER -->
+	 <filter>
+	<filter-name>springSecurityFilterChain</filter-name>
+	<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+       </filter>
+	<filter-mapping>
+		<filter-name>springSecurityFilterChain</filter-name>
+		<url-pattern>/*</url-pattern>
+		<dispatcher>FORWARD</dispatcher>
+		<dispatcher>REQUEST</dispatcher>
+	</filter-mapping> 
+		
+		
+		
+	<!-- Usa-se apenas com o face puro -->	
+	<!--<listener> -->
+	<!--<listener-class>com.sun.faces.config.ConfigureListener</listener-class> -->
+	<!--</listener> -->
+	<!-- Usa-se apenas com o face puro -->
+	
+	<error-page>
+		<error-code>500</error-code>
+		<location>/public/errors/error.xhtml</location>
+	</error-page>
+
+	<error-page>
+		<error-code>400</error-code>
+		<location>/public/errors/error.xhtml</location>
+	</error-page>
+	<error-page>
+		<exception-type>java.lang.Exception</exception-type>
+		<location>/public/errors/error.xhtml</location>
+	</error-page>
+
+	<context-param>
+		<param-name>javax.faces.FACELETS_SKIP_COMMENTS</param-name>
+		<param-value>true</param-value>
+	</context-param>	
+
+</web-app>
