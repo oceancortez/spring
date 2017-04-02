@@ -1,0 +1,95 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>org.oxi</groupId>
+	<artifactId>spring-request-mapping-3.2.13.RELEASE-all</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>pom</packaging>
+	<modules>
+		<module>oxi-spring-request-mapping</module>
+	</modules>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<spring.version>3.2.13.RELEASE</spring.version>
+		<jdk.version>1.8</jdk.version>
+		<slf4j.version>1.7.1</slf4j.version>
+	</properties>
+
+	<repositories>
+
+		<!-- MAVEN REPOSITORY -->
+		<repository>
+			<id>mvn-repository</id>
+			<url>http://mvnrepository.com/</url>
+		</repository>
+
+		<!-- MAVEN SEARCH REPOSITORY -->
+		<repository>
+			<id>mavensearch</id>
+			<url>http://www.mvnsearch.org/maven2</url>
+		</repository>
+
+
+		<!-- REPO2 REPOSITORY -->
+		<repository>
+			<id>repo2</id>
+			<url>http://repo2.maven.org/maven2</url>
+		</repository>
+	</repositories>
+
+	<pluginRepositories>
+		<!-- MAVEN PLUGIN REPOSITORY -->
+		<pluginRepository>
+			<id>repo1.maven</id>
+			<name>Maven Repository</name>
+			<url>http://repo1.maven.org/maven2</url>
+		</pluginRepository>
+	</pluginRepositories>
+
+	<dependencies>
+		<!-- JUNIT -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.11</version>
+		</dependency>
+	</dependencies>
+
+
+
+	<dependencyManagement>
+		<dependencies>
+
+
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-webmvc</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+
+
+			<dependency>
+				<groupId>javax.servlet.jsp.jstl</groupId>
+				<artifactId>jstl-api</artifactId>
+				<version>1.2</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.3</version>
+				<configuration>
+					<source>${jdk.version}</source>
+					<target>${jdk.version}</target>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+</project>
