@@ -1,4 +1,3 @@
-/target/
 *.iml
 *.class
 *.idea
@@ -8,9 +7,3 @@
 /out
 /target
 /lib
-*.classpath
-*.project
-*.settings
-/*.idea
-/*.metadata
-*.metadata
