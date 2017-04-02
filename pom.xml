@@ -1,0 +1,338 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>br.com.oxi</groupId>
+  <artifactId>laicnanifnalpym-all</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>pom</packaging>
+  <modules>
+  	<module>laicnanifnalpym-controller</module>
+  	<module>laicnanifnalpym-repository</module>
+  	<module>laicnanifnalpym-middleware</module>
+  </modules>
+<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<spring.version>3.2.13.RELEASE</spring.version>
+		<jdk.version>1.8</jdk.version>
+		<slf4j.version>1.7.1</slf4j.version>
+		<resteasy.version>2.2.1.GA</resteasy.version>
+		<slf4j.version>1.7.5</slf4j.version>
+		<hibernate.version>3.6.10.Final</hibernate.version>
+		<spring.data.version>1.5.1.RELEASE</spring.data.version>
+		<hibernate.validator.version>4.2.0.Final</hibernate.validator.version>
+	</properties>
+
+	<repositories>
+		<!-- NAKED OBJECTS -->
+		<repository>
+			<id>no-snapshotsd</id>
+			<url>http://nakedobjects.sourceforge.net/m2-repo/snapshot/</url>
+		</repository>
+
+		<!-- MAVEN REPOSITORY -->
+		<repository>
+			<id>mvn-repository</id>
+			<url>http://mvnrepository.com/</url>
+		</repository>
+
+		<!-- MAVEN SEARCH REPOSITORY -->
+		<repository>
+			<id>mavensearch</id>
+			<url>http://www.mvnsearch.org/maven2</url>
+		</repository>
+
+		<!-- SPRING REPOSITORY -->
+		<repository>
+			<id>com.springsource.repository.bundles.release</id>
+			<name>EBR Spring Release Repository</name>
+			<url>http://repository.springsource.com/maven/bundles/release </url>
+		</repository>
+
+		<!-- SPRING REPOSITORY -->
+		<repository>
+			<id>com.springsource.repository.bundles.external</id>
+			<name>EBR External Release Repository</name>
+			<url>http://repository.springsource.com/maven/bundles/external </url>
+		</repository>
+
+		<!-- JBOSS REPOSITORY -->
+		<repository>
+			<id>jboss-repository</id>
+			<url>https://repository.jboss.org/nexus/content/repositories/</url>
+		</repository>
+
+		<!-- JBOSS REPOSITORY -->
+		<repository>
+			<id>JBoss Repo</id>
+			<url>http://repository.jboss.com</url>
+		</repository>
+
+		<!-- GOOGLE REPOSITORY -->
+		<repository>
+			<id>google-repository</id>
+			<url>http://google-maven-repository.googlecode.com/svn/repository/</url>
+		</repository>
+
+		<!-- GLASSFISH REPOSITORY -->
+		<repository>
+			<id>glassfish-repository</id>
+			<url>http://download.java.net/maven/glassfish/</url>
+		</repository>
+
+		<!-- REPO2 REPOSITORY -->
+		<repository>
+			<id>repo2</id>
+			<url>http://repo2.maven.org/maven2</url>
+		</repository>
+	</repositories>
+
+	<pluginRepositories>
+		<!-- MAVEN PLUGIN REPOSITORY -->
+		<pluginRepository>
+			<id>repo1.maven</id>
+			<name>Maven Repository</name>
+			<url>http://repo1.maven.org/maven2</url>
+		</pluginRepository>
+
+		<!-- ELCA SERVICES PLUGIN -->
+		<pluginRepository>
+			<id>elca-services</id>
+			<url>http://el4.elca-services.ch/el4j/maven2repository</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+		</pluginRepository>
+	</pluginRepositories>
+
+	<dependencies>
+		<!-- JUNIT -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.11</version>
+		</dependency>
+	</dependencies>
+
+
+
+	<dependencyManagement>
+		<dependencies>
+
+			<!--MODUDO DE CONTROLLER -->
+			<dependency>
+				<groupId>${project.groupId}</groupId>
+				<artifactId>laicnanifnalpym-controller</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+
+			<!--MODUDO MIDDLEWARE -->
+			<dependency>
+				<groupId>${project.groupId}</groupId>
+				<artifactId>laicnanifnalpym-middleware</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+
+			<!--MODUDO DE REPOSITORY -->
+			<dependency>
+				<groupId>${project.groupId}</groupId>
+				<artifactId>laicnanifnalpym-repository</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+
+
+
+			<!-- SPRING WEB -->
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-web</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+
+
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-webmvc</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+
+
+			<dependency>
+				<groupId>javax.servlet.jsp.jstl</groupId>
+				<artifactId>jstl-api</artifactId>
+				<version>1.2</version>
+			</dependency>
+
+
+			<!-- Contrução do módulo de resteasy -->
+			<!-- Spring -->
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-core</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-beans</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+
+
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-context</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+
+			<!-- RestEasy - JAX-RS -->
+			<dependency>
+				<groupId>org.jboss.resteasy</groupId>
+				<artifactId>resteasy-jaxrs</artifactId>
+				<version>${resteasy.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.jboss.resteasy</groupId>
+				<artifactId>resteasy-multipart-provider</artifactId>
+				<version>${resteasy.version}</version>
+			</dependency>
+			<!-- RestEasy - Spring integration -->
+			<dependency>
+				<groupId>org.jboss.resteasy</groupId>
+				<artifactId>resteasy-spring</artifactId>
+				<version>${resteasy.version}</version>
+				<exclusions>
+					<exclusion>
+						<groupId>org.jboss.resteasy</groupId>
+						<artifactId>resteasy-jettison-provider</artifactId>
+					</exclusion>
+				</exclusions>
+			</dependency>
+
+			<!-- RestEasy - Jackson integration -->
+			<dependency>
+				<groupId>org.jboss.resteasy</groupId>
+				<artifactId>resteasy-jackson-provider</artifactId>
+				<version>${resteasy.version}</version>
+			</dependency>
+			<!-- Contrução do módulo de resteasy -->
+
+
+			<!-- JAVAX INJECT -->
+			<dependency>
+				<groupId>javax.inject</groupId>
+				<artifactId>javax.inject</artifactId>
+				<version>1</version>
+			</dependency>
+
+			<!-- Logging -->
+			<dependency>
+				<groupId>log4j</groupId>
+				<artifactId>log4j</artifactId>
+				<version>1.2.17</version>
+			</dependency>
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>slf4j-api</artifactId>
+				<version>${slf4j.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>slf4j-log4j12</artifactId>
+				<version>${slf4j.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.codehaus.jackson</groupId>
+				<artifactId>jackson-mapper-asl</artifactId>
+				<version>1.9.10</version>
+			</dependency>
+
+			<!-- FUTURO MODULO DE PERSISTENCIA -->
+
+			<!-- SPRING TEST -->
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-test</artifactId>
+				<version>${spring.version}</version>
+				<scope>test</scope>
+			</dependency>
+
+			<!-- SPRING DATA JPA -->
+			<dependency>
+				<groupId>org.springframework.data</groupId>
+				<artifactId>spring-data-jpa</artifactId>
+				<version>${spring.data.version}</version>
+			</dependency>
+
+			<!-- MySQL DRIVER -->
+			<dependency>
+				<groupId>mysql</groupId>
+				<artifactId>mysql-connector-java</artifactId>
+				<version>5.1.18</version>
+			</dependency>
+			<!-- HIBERNATE ENTITYMANAGER -->
+			<dependency>
+				<groupId>org.hibernate</groupId>
+				<artifactId>hibernate-entitymanager</artifactId>
+				<version>${hibernate.version}</version>
+			</dependency>
+
+			<!-- http://mvnrepository.com/artifact/org.hibernate/hibernate-validator -->
+			<dependency>
+				<groupId>org.hibernate</groupId>
+				<artifactId>hibernate-validator</artifactId>
+				<version>${hibernate.validator.version}</version>
+			</dependency>
+
+
+			<!-- COMMONS LANG3 -->
+			<dependency>
+				<groupId>org.apache.commons</groupId>
+				<artifactId>commons-lang3</artifactId>
+				<version>3.1</version>
+			</dependency>
+
+			<!--  fileupload-->
+			<dependency>
+				<groupId>commons-fileupload</groupId>
+				<artifactId>commons-fileupload</artifactId>
+				<version>1.2.2</version>
+			</dependency>
+			<!--  commons io-->
+			<dependency>
+				<groupId>commons-io</groupId>
+				<artifactId>commons-io</artifactId>
+				<version>2.1</version>
+			</dependency>
+
+
+		</dependencies>
+
+
+
+	</dependencyManagement>
+
+
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.3</version>
+				<configuration>
+					<source>${jdk.version}</source>
+					<target>${jdk.version}</target>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<!-- Generate graphics of dependency. -->
+				<groupId>ch.elca.el4j.maven.plugins</groupId>
+				<artifactId>maven-depgraph-plugin</artifactId>
+				<version>1.7</version>
+			</plugin>
+		</plugins>
+	</build>
+</project>
