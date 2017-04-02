@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:p="http://primefaces.org/ui">
+<ui:composition template="../main.xhtml">
+
+    <ui:define name="content">
+        <h:form id="form-product" prependId="false">
+
+            <p:ajaxStatus onstart="statusDialog.show();" onsuccess="statusDialog.hide();"/>
+
+            <p:dialog modal="true" widgetVar="statusDialog"
+                      draggable="false" closable="false" resizable="false">
+                <center>
+                    <h:graphicImage library="images" name="ajax-loader.gif"/>
+                </center>
+                <br/>
+            </p:dialog>
+
+            <p:panelGrid columns="2" style="width: 50%">
+                <f:facet name="header">
+                    <p:outputLabel value="#{productAddEditMB.title}"/>
+                </f:facet>
+                <center>
+                    <p:growl id="messages" life="5000" globalOnly="true"/>
+                </center>
+                <h:inputHidden value="#{productAddEditMB.product.id}"/>
+
+
+                <p:outputLabel for="productName" value="#{labels.product_name}: "/>
+                <p:inputText id="productName" value="#{productAddEditMB.product.productName}"/>
+
+                <p:outputLabel for="quantityPerUnit" value="#{labels.product_quantityPerUnit}: "/>
+                <p:inputText id="quantityPerUnit" value="#{productAddEditMB.product.quantityPerUnit}"/>
+
+                <p:outputLabel for="unitPrice" value="#{labels.product_unitPrice}: "/>
+                <p:inputText id="unitPrice" value="#{productAddEditMB.product.unitPrice}"/>
+
+
+                <p:outputLabel for="category" value="#{labels.product_category_id}: "/>
+               <h:panelGroup>
+                        <p:inputText id="category" readonly="true"
+                                     value="#{productAddEditMB.product.categoryId}"/>
+
+
+                    <p:commandButton icon="ui-icon-search" title="Pesquisar"
+                                     action="#{selectCategoryMB.openDialog}"
+                                     process="@this" update="@none">
+                        <p:ajax event="dialogReturn" listener="#{productAddEditMB.selectedCategory}"
+                                process="@this" update="category"/>
+
+                    </p:commandButton>
+                </h:panelGroup>
+
+
+                <p:outputLabel for="unitsInStock" value="#{labels.product_unitsInStock}: "/>
+                <p:inputText id="unitsInStock" value="#{productAddEditMB.product.unitsInStock}"/>
+
+                <p:outputLabel for="unitsOnOrder" value="#{labels.product_unitsOnOrder}: "/>
+                <p:inputText id="unitsOnOrder" value="#{productAddEditMB.product.unitsOnOrder}"/>
+
+                <p:outputLabel for="reorderLevel" value="#{labels.product_reorderLevel}: "/>
+                <p:inputText id="reorderLevel" value="#{productAddEditMB.product.reorderLevel}"/>
+
+                <p:outputLabel for="discontinued" value="#{labels.product_discontinued}: "/>
+                <p:selectBooleanCheckbox id="discontinued" value="#{productAddEditMB.product.discontinued}"/>
+
+                <f:facet name="footer">
+                    <p:row>
+                        <p:outputPanel style="width: 100%; text-align:center"
+                                       layout="block">
+
+                            <p:commandButton value="#{labels.button_save}" action="#{productAddEditMB.save}"
+                                             update="messages " style="margin: 130px auto;" ajax="true">
+                                <p:resetInput target="form-product"/>
+                            </p:commandButton>
+
+                            <p:commandButton value="#{labels.button_cancel}"
+                                             action="/pages/product/list.xhtml"
+                                             actionListener="#{productAddEditMB.cancel}"
+                                             style="margin: 130px auto;" ajax="false"/>
+                        </p:outputPanel>
+                    </p:row>
+                </f:facet>
+            </p:panelGrid>
+        </h:form>
+    </ui:define>
+</ui:composition>
+</html>
