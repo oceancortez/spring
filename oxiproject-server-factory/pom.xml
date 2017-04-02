@@ -1,0 +1,69 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>org.oxiproject-service</groupId>
+    <artifactId>oxiproject-service-all</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+  </parent>
+  <artifactId>oxiproject-server-factory</artifactId>
+  <packaging>war</packaging>
+  
+  
+	<dependencies>
+		<!-- WPROJECT SERVER DATABASE -->
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>oxiproject-server-database</artifactId>			
+		</dependency>
+
+		<!-- WPROJECT SERVER SERVICE -->
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>oxiproject-server-service</artifactId>			
+		</dependency>
+
+		<!-- WPROJECT SERVER UTILS -->
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>oxiproject-server-utils</artifactId>			
+		</dependency>
+
+		<!-- SPRING WEB -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-web</artifactId>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<finalName>${project.name}-${project.version}</finalName>
+		<plugins>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.3</version>
+				<configuration>
+					<source>${jdk.version}</source>
+					<target>${jdk.version}</target>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.eclipse.jetty</groupId>
+				<artifactId>jetty-maven-plugin</artifactId>
+				<version>9.2.11.v20150529</version>
+				<configuration>
+					<scanIntervalSeconds>10</scanIntervalSeconds>
+					<!-- Para mudar a porta do servidor -->
+					<httpConnector>
+						<port>8083</port>
+					</httpConnector>
+					<webApp>
+						<contextPath>/</contextPath>
+					</webApp>
+				</configuration>
+			</plugin>			
+		</plugins>
+	</build>
+</project>
