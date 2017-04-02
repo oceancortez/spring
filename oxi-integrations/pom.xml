@@ -1,0 +1,80 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>org.oxi</groupId>
+    <artifactId>oxi-project-spring-jpa-rest-all</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+  </parent>
+  <artifactId>oxi-integrations</artifactId>
+  
+  <dependencies>
+  <!-- WPROJECT SERVER UTILS -->
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>oxi-utils</artifactId>			
+		</dependency>
+		
+		<!-- WPROJECT SERVER Persistence -->
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>oxi-persistence</artifactId>			
+		</dependency>
+		
+		<!-- WPROJECT SERVER Persistence -->
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>oxi-service-api</artifactId>			
+		</dependency>
+
+			<!-- JAVAX INJECT -->
+		<dependency>
+			<groupId>javax.inject</groupId>
+			<artifactId>javax.inject</artifactId>
+		</dependency>
+
+		<!-- COMMONS LANG3 -->
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+		</dependency>
+
+		<!-- SPRING TEST -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+		<!-- SPRING CONTEXT -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+		</dependency>
+
+		<!-- SPRING DATA JPA -->
+		<dependency>
+			<groupId>org.springframework.data</groupId>
+			<artifactId>spring-data-jpa</artifactId>
+		</dependency>		
+		
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpclient</artifactId>			
+		</dependency>
+		
+	</dependencies>
+		
+		
+  <build>
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<includes>
+					<include>**/*.xml</include>
+				</includes>
+				<filtering>true</filtering>
+			</resource>
+		</resources>
+	</build>
+  
+</project>
