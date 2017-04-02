@@ -1,0 +1,18 @@
+#mainHeader{
+    font-family: Verdana,sans-serif;
+    color: black;
+    font-size: 60px;
+    font-weight: bolder;
+    background-color: seashell;
+}
+
+#mainFooter{
+    font-family: Verdana,sans-serif;
+    color: gray;
+    font-size: 10px;
+    font-weight: bolder;
+}
+
+#mainMenu{
+
+}
