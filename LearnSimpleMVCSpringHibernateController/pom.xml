@@ -50,6 +50,12 @@
 				<groupId>javax.servlet</groupId>
 				<artifactId>jstl</artifactId>
 			</dependency>
+			
+						<!-- Jackson JSON Mapper -->
+		<dependency>
+			<groupId>org.codehaus.jackson</groupId>
+			<artifactId>jackson-mapper-asl</artifactId>
+		</dependency>
 
 	</dependencies>
 
