@@ -6,4 +6,13 @@
     <version>0.0.1-SNAPSHOT</version>
   </parent>
   <artifactId>LearnSimpleMVCSpringHibernateService</artifactId>
+  
+    <dependencies>
+  
+	<dependency>
+		<groupId>org.omc</groupId>		
+		<artifactId>LearnSimpleMVCSpringHibernateDAO</artifactId>
+	</dependency>  
+  
+  </dependencies>
 </project>

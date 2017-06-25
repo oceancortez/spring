@@ -5,6 +5,5 @@
     <artifactId>LearnSimpleMVCSpringHibernate</artifactId>
     <version>0.0.1-SNAPSHOT</version>
   </parent>
-  <artifactId>LearnSimpleMVCSpringHibernateController</artifactId>
-  <packaging>war</packaging>
+  <artifactId>LearnSimpleMVCSpringHibernateUtil</artifactId>
 </project>
