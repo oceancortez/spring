@@ -1,13 +1,16 @@
 /**
  * 
  */
-package org.omc.controller;
+package org.omc.dao.entity;
 
 /**
- * @author ocean
+ * @author omc
  *
  */
-public class Usuario {
+public class UsuarioEntity {
+	
+	
+	private Integer id;
 	
 	private String nome;
 
@@ -23,6 +26,14 @@ public class Usuario {
 	 */
 	public void setNome(String nome) {
 		this.nome = nome;
+	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
 }

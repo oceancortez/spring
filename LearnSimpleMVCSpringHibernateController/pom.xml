@@ -34,28 +34,31 @@
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-aop</artifactId>
 		</dependency>
-		
+
 		<!-- Java EE -->
-			<dependency>
-				<groupId>javax.servlet</groupId>
-				<artifactId>javax.servlet-api</artifactId>
-				<scope>provided</scope>
-			</dependency>
-			<dependency>
-				<groupId>javax.servlet.jsp</groupId>
-				<artifactId>jsp-api</artifactId>
-				<scope>provided</scope>
-			</dependency>
-			<dependency>
-				<groupId>javax.servlet</groupId>
-				<artifactId>jstl</artifactId>
-			</dependency>
-			
-						<!-- Jackson JSON Mapper -->
 		<dependency>
-			<groupId>org.codehaus.jackson</groupId>
-			<artifactId>jackson-mapper-asl</artifactId>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<scope>provided</scope>
 		</dependency>
+		<dependency>
+			<groupId>javax.servlet.jsp</groupId>
+			<artifactId>jsp-api</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>jstl</artifactId>
+		</dependency>
+
+		<!-- JSON -->
+		<!-- @ResponseBody error 406 apenas incluir esta dependencia -->
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+		</dependency>
+		<!-- @ResponseBody error 406 apenas incluir esta dependencia -->
+
 
 	</dependencies>
 

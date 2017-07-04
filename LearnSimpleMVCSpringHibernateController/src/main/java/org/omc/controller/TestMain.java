@@ -3,13 +3,13 @@
  */
 package org.omc.controller;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import javax.servlet.http.HttpServletRequest;
 
+import org.omc.service.UsuarioService;
 import org.omc.util.Paginas;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -24,6 +24,9 @@ import org.springframework.web.servlet.ModelAndView;
 @SessionAttributes(value = {"testMain"})
 public class TestMain {
 	
+	@Autowired
+	private UsuarioService usuarioService;
+	
 	@RequestMapping(value = "testMain", method = RequestMethod.GET)
 	public ModelAndView testMain(HttpServletRequest request){
 		
@@ -33,11 +36,22 @@ public class TestMain {
 	}
 	
 	@RequestMapping(value = "testMainResponseBody", method = RequestMethod.GET, produces = "application/json")
-	public @ResponseBody Usuario testMainResponseBody(HttpServletRequest request){
+	public @ResponseBody UsuarioController testMainResponseBody(HttpServletRequest request){
 		
 		//request.setAttribute("inicio", "Teste OK");
-		Usuario u = new Usuario();
-		u.setNome("Usuario OK");
+		UsuarioController u = new UsuarioController();
+	
+		
+		
+		return u;
+	}
+	
+	@RequestMapping(value = "getUserById/{id}", method = RequestMethod.GET, produces = "application/json")
+	public @ResponseBody org.omc.dao.entity.UsuarioEntity getUserById(@PathVariable Long id){
+		
+		//request.setAttribute("inicio", "Teste OK");
+		
+		org.omc.dao.entity.UsuarioEntity u = usuarioService.getUsuarioById(id);		
 		
 		
 		return u;
