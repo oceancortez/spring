@@ -25,4 +25,13 @@ public @Service class UsuarioService {
 		return  usuarioDAO.getUserById(id);
 	}
 
+
+
+
+	public UsuarioEntity saveUser(Long id, String nome) {
+		UsuarioEntity usuarioEntity = new UsuarioEntity(id.intValue(), nome);
+		usuarioDAO.saveOrUpdate(usuarioEntity);
+		usuarioEntity = usuarioDAO.getUserById(id);
+		return usuarioEntity;
+	}
 }

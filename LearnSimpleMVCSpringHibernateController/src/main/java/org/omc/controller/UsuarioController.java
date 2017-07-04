@@ -6,6 +6,8 @@ package org.omc.controller;
 import org.omc.dao.entity.UsuarioEntity;
 import org.omc.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,6 +29,20 @@ public class UsuarioController {
 	public @ResponseBody UsuarioEntity getUserById(@PathVariable Long id) {
 		
 		return usuarioService.getUsuarioById(id);
+	}
+	
+	@RequestMapping(value = "getUserByIdResponse/{id}", method = RequestMethod.GET)	
+	public @ResponseBody ResponseEntity<UsuarioEntity> getUserByIdResponse(@PathVariable Long id) {
+		UsuarioEntity usuarioById = usuarioService.getUsuarioById(id);
+		
+		return new ResponseEntity<UsuarioEntity>(usuarioById, HttpStatus.CREATED);
+	}
+	
+	@RequestMapping(value = "saveUser/{id}/{nome}", method = RequestMethod.GET)	
+	public @ResponseBody ResponseEntity<UsuarioEntity> saveUser(@PathVariable Long id, @PathVariable String nome) {
+		UsuarioEntity usuarioById = usuarioService.saveUser(id, nome);
+		
+		return new ResponseEntity<UsuarioEntity>(usuarioById, HttpStatus.CREATED);
 	}
 
 }

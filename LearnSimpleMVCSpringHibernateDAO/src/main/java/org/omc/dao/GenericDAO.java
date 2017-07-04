@@ -9,7 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional(rollbackFor = Exception.class)
 public @Repository class GenericDAO extends BaseDAO{
 	
-	public void saveOrUpdate(Object object) {
+	public <T> void saveOrUpdate(T object) {
 		getCurrentSession().saveOrUpdate(object);
 	}
 	

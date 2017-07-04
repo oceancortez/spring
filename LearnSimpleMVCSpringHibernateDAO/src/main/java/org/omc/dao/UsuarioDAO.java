@@ -17,4 +17,13 @@ public @Repository class UsuarioDAO  extends BaseDAO{
 		
 		return (UsuarioEntity) query.uniqueResult();
 	}
+
+	public void saveOrUpdate(UsuarioEntity usuarioEntity) {
+//		Query query = getCurrentSession().getNamedQuery("insertUser");
+//		query.setInteger("id", usuarioEntity.getId());
+//		query.setString("nome", usuarioEntity.getNome());
+				
+		getCurrentSession().save(usuarioEntity);
+				
+	}
 }
