@@ -3,6 +3,7 @@ package org.omc.service;
 import org.omc.dao.GenericDAO;
 import org.omc.dao.UsuarioDAO;
 import org.omc.dao.entity.UsuarioEntity;
+import org.omc.util.UsuarioException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -28,10 +29,10 @@ public @Service class UsuarioService {
 
 
 
-	public UsuarioEntity saveUser(Long id, String nome) {
-		UsuarioEntity usuarioEntity = new UsuarioEntity(id.intValue(), nome);
-		usuarioDAO.saveOrUpdate(usuarioEntity);
-		usuarioEntity = usuarioDAO.getUserById(id);
+	public UsuarioEntity saveUser(String nome) throws UsuarioException {
+		UsuarioEntity usuarioEntity = new UsuarioEntity(null, nome);
+		usuarioEntity = usuarioDAO.saveOrUpdate(usuarioEntity);
+		
 		return usuarioEntity;
 	}
 }

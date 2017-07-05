@@ -3,8 +3,11 @@ package org.omc.dao;
 import org.hibernate.Query;
 import org.hibernate.transform.Transformers;
 import org.omc.dao.entity.UsuarioEntity;
+import org.omc.util.UsuarioException;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
+
+import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException;
 
 @Transactional
 public @Repository class UsuarioDAO  extends BaseDAO{
@@ -18,12 +21,18 @@ public @Repository class UsuarioDAO  extends BaseDAO{
 		return (UsuarioEntity) query.uniqueResult();
 	}
 
-	public void saveOrUpdate(UsuarioEntity usuarioEntity) {
-//		Query query = getCurrentSession().getNamedQuery("insertUser");
-//		query.setInteger("id", usuarioEntity.getId());
-//		query.setString("nome", usuarioEntity.getNome());
-				
-		getCurrentSession().save(usuarioEntity);
+	public UsuarioEntity saveOrUpdate(UsuarioEntity usuarioEntity) throws UsuarioException {
+		try {
+			usuarioEntity = (UsuarioEntity) getCurrentSession().merge(usuarioEntity);			
+			
+		} catch (Exception e) {
+			if(e.getCause() instanceof MySQLIntegrityConstraintViolationException) {
+				getCurrentSession().clear();
+				throw new UsuarioException("Favor inserir outro nome!");
+			}
+			System.out.println(e.getMessage());
+		}
+		return usuarioEntity;
 				
 	}
 }
