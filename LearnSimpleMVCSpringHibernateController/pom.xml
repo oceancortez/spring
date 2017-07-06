@@ -58,6 +58,12 @@
 			<artifactId>jackson-databind</artifactId>
 		</dependency>
 		<!-- @ResponseBody error 406 apenas incluir esta dependencia -->
+		
+		<!-- Gerenciamento de Template -->
+		<dependency>
+			<groupId>opensymphony</groupId>
+			<artifactId>sitemesh</artifactId>		
+		</dependency>
 
 
 	</dependencies>

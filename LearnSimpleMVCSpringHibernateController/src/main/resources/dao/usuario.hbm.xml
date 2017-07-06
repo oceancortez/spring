@@ -7,9 +7,22 @@
 
 	<sql-query name="getUserById">
 	<![CDATA[
-		select * 					 		
+		select	u.id
+				,u.nome
+				,u.dt_ult_alt dtUltAlt 
+		 					 		
 		from   usuario  u     
 		where  u.id = :id
+	]]>
+	</sql-query>
+	
+	<sql-query name="getUsers">
+	<![CDATA[
+		select	u.id
+				,u.nome
+				,u.dt_ult_alt dtUltAlt 
+		 					 		
+		from   usuario  u
 	]]>
 	</sql-query>
 </hibernate-mapping>

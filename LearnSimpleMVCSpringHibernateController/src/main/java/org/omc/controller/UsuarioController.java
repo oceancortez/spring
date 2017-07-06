@@ -3,7 +3,7 @@
  */
 package org.omc.controller;
 
-import java.util.HashMap;
+import java.util.List;
 
 import org.omc.dao.entity.UsuarioEntity;
 import org.omc.service.UsuarioService;
@@ -12,15 +12,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.util.LinkedMultiValueMap;
-import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 /**
- * @author ocean
+ * @author omc
  *
  */
 @RequestMapping(value = "usuario")
@@ -43,18 +42,31 @@ public class UsuarioController {
 		return new ResponseEntity<UsuarioEntity>(usuarioById, HttpStatus.CREATED);
 	}
 	
+	@RequestMapping(value = "getUsers", method = RequestMethod.GET)	
+	public @ResponseBody ResponseEntity<List<UsuarioEntity>> getUsers() {
+		List<UsuarioEntity> usuarioById = usuarioService.getUsers();
+		
+		return new ResponseEntity<List<UsuarioEntity>>(usuarioById, HttpStatus.CREATED);
+	}
+	
 	@RequestMapping(value = "saveUser/{nome}", method = RequestMethod.GET)	
-	public @ResponseBody ResponseEntity<UsuarioEntity> saveUser(@PathVariable String nome) {
+	public @ResponseBody ResponseEntity<String> saveUser(@PathVariable String nome) {
 		UsuarioEntity usuarioById;
 		try {
 			usuarioById = usuarioService.saveUser(nome);
-		} catch (UsuarioException e) {
-			MultiValueMap<String, String> rollback = new LinkedMultiValueMap<String, String>();
-			rollback.add("message", e.getMessage());
-			return new ResponseEntity<UsuarioEntity>(null, rollback ,HttpStatus.ACCEPTED);
+		} catch (UsuarioException e) {			
+			return new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
 		}
 		
-		return new ResponseEntity<UsuarioEntity>(usuarioById, HttpStatus.CREATED);
+		return new ResponseEntity<String>("Usuario '" + usuarioById.getNome() + "' foi cadastrado com sucesso!", HttpStatus.CREATED);
+	}
+	
+	
+	@RequestMapping(value = "usuarios", method = RequestMethod.GET)	
+	public ModelAndView  usuarios() {
+		List<UsuarioEntity> listaUsuarios = usuarioService.getUsers();
+		
+		return new ModelAndView("pages/usuarios").addObject("listaUsuarios", listaUsuarios);
 	}
 
 }

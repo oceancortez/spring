@@ -170,7 +170,15 @@
 				<groupId>com.fasterxml.jackson.core</groupId>
 				<artifactId>jackson-databind</artifactId>
 				<version>2.5.2</version>
-			</dependency>
+			</dependency>	
+						
+			
+		<!-- Foi adicionado para fazer o parse da data long para date -->			
+		<dependency>
+		    <groupId>com.fasterxml.jackson.core</groupId>
+		    <artifactId>jackson-annotations</artifactId>
+		    <version>2.5.2</version>
+		</dependency>
 
 			<!-- Logs -->
 			<dependency>
@@ -198,35 +206,9 @@
 						<artifactId>*</artifactId>
 					</exclusion>
 				</exclusions>
-			</dependency>
+			</dependency>		
 			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			<!-- Jackson JSON Mapper -->
-		<!-- <dependency>
-			<groupId>org.codehaus.jackson</groupId>
-			<artifactId>jackson-mapper-asl</artifactId>
-			<version>1.9.10</version>
-		</dependency>
- -->
+
 		</dependencies>
 
 	</dependencyManagement>

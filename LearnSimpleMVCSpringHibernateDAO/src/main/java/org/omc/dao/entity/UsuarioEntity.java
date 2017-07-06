@@ -14,6 +14,8 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 /**
  * @author omc
  *
@@ -30,6 +32,7 @@ public class UsuarioEntity {
 	
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "dt_ult_alt")
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy hh:mm:ss")
 	private Date dtUltAlt;
 	
 	@Transient
