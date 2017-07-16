@@ -2,7 +2,6 @@ package org.omc.dao;
 
 import java.util.List;
 
-import org.hibernate.Query;
 import org.hibernate.SQLQuery;
 import org.hibernate.transform.Transformers;
 import org.hibernate.type.IntegerType;
@@ -31,19 +30,29 @@ public @Repository class UsuarioDAO  extends BaseDAO{
 	private void preencherProjecao(SQLQuery query) {
 		query.addScalar("id", IntegerType.INSTANCE);
 		query.addScalar("nome", StringType.INSTANCE);
+		query.addScalar("email", StringType.INSTANCE);
 		query.addScalar("dtUltAlt", TimestampType.INSTANCE);		
 	}
-
+	
+	
 	public UsuarioEntity saveOrUpdate(UsuarioEntity usuarioEntity) throws UsuarioException {
 		try {
 			usuarioEntity = (UsuarioEntity) getCurrentSession().merge(usuarioEntity);			
 			
 		} catch (Exception e) {
+			
 			if(e.getCause() instanceof MySQLIntegrityConstraintViolationException) {
 				getCurrentSession().clear();
+				
+				if(e.getCause().getMessage().contains("email_UNIQUE")){
+					throw new UsuarioException("Esse Email já existe, favor cadastrar outro!");					
+				}
+				if(e.getCause().getMessage().contains("email")){
+					throw new UsuarioException("O campo Email é obrigatório!");
+				}				
 				throw new UsuarioException("Favor inserir outro nome!");
 			}
-			System.out.println(e.getMessage());
+			throw new UsuarioException(e.getMessage());
 		}
 		return usuarioEntity;
 				

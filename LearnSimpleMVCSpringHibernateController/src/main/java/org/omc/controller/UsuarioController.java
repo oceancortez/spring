@@ -49,11 +49,11 @@ public class UsuarioController {
 		return new ResponseEntity<List<UsuarioEntity>>(usuarioById, HttpStatus.CREATED);
 	}
 	
-	@RequestMapping(value = "saveUser/{nome}", method = RequestMethod.GET)	
-	public @ResponseBody ResponseEntity<String> saveUser(@PathVariable String nome) {
+	@RequestMapping(value = "saveUser/{nome}/{email}", method = RequestMethod.GET)	
+	public @ResponseBody ResponseEntity<String> saveUser(@PathVariable String nome, @PathVariable String email) {
 		UsuarioEntity usuarioById;
 		try {
-			usuarioById = usuarioService.saveUser(nome);
+			usuarioById = usuarioService.saveUser(nome, email);
 		} catch (UsuarioException e) {			
 			return new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
 		}

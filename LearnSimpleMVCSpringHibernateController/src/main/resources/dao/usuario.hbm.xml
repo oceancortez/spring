@@ -9,6 +9,7 @@
 	<![CDATA[
 		select	u.id
 				,u.nome
+				,u.email
 				,u.dt_ult_alt dtUltAlt 
 		 					 		
 		from   usuario  u     
@@ -20,6 +21,7 @@
 	<![CDATA[
 		select	u.id
 				,u.nome
+				,u.email
 				,u.dt_ult_alt dtUltAlt 
 		 					 		
 		from   usuario  u

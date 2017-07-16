@@ -26,8 +26,8 @@ public @Service class UsuarioService {
 		return  usuarioDAO.getUserById(id);
 	}
 
-	public UsuarioEntity saveUser(String nome) throws UsuarioException {
-		UsuarioEntity usuarioEntity = new UsuarioEntity(null, nome);
+	public UsuarioEntity saveUser(String nome, String email) throws UsuarioException {
+		UsuarioEntity usuarioEntity = new UsuarioEntity(null, nome, email);
 		usuarioEntity = usuarioDAO.saveOrUpdate(usuarioEntity);
 		
 		return usuarioEntity;

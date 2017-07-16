@@ -30,6 +30,8 @@ public class UsuarioEntity {
 	
 	private String nome;
 	
+	private String email;
+	
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "dt_ult_alt")
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy hh:mm:ss")
@@ -39,12 +41,14 @@ public class UsuarioEntity {
 	private String message;
 	
 	public UsuarioEntity() {
-		// TODO Auto-generated constructor stub
+		
 	}
-
-	public UsuarioEntity(Integer id, String nome) {
+	
+	public UsuarioEntity(Integer id, String nome, String email) {
 		this.id = id;
-		this.nome = nome;	}
+		this.nome = nome;
+		this.email = email;
+	}
 
 	public UsuarioEntity(String message) {
 		this.message = message;
@@ -86,6 +90,20 @@ public class UsuarioEntity {
 
 	public void setMessage(String message) {
 		this.message = message;
+	}
+
+	/**
+	 * @return the email
+	 */
+	public String getEmail() {
+		return email;
+	}
+
+	/**
+	 * @param email the email to set
+	 */
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 }
