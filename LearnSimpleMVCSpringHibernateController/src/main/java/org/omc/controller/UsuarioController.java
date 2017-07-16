@@ -42,12 +42,13 @@ public class UsuarioController {
 		return new ResponseEntity<UsuarioEntity>(usuarioById, HttpStatus.CREATED);
 	}
 	
-	@RequestMapping(value = "getUsers", method = RequestMethod.GET)	
-	public @ResponseBody ResponseEntity<List<UsuarioEntity>> getUsers() {
+	@RequestMapping(value = "getUsersJson", method = RequestMethod.GET)	
+	public @ResponseBody ResponseEntity<List<UsuarioEntity>> getUsersJson() {
 		List<UsuarioEntity> usuarioById = usuarioService.getUsers();
 		
 		return new ResponseEntity<List<UsuarioEntity>>(usuarioById, HttpStatus.CREATED);
 	}
+	
 	
 	@RequestMapping(value = "saveUser/{nome}/{email}", method = RequestMethod.GET)	
 	public @ResponseBody ResponseEntity<String> saveUser(@PathVariable String nome, @PathVariable String email) {
@@ -62,11 +63,11 @@ public class UsuarioController {
 	}
 	
 	
-	@RequestMapping(value = "usuarios", method = RequestMethod.GET)	
+	@RequestMapping(value = "getUsers", method = RequestMethod.GET)	
 	public ModelAndView  usuarios() {
-		List<UsuarioEntity> listaUsuarios = usuarioService.getUsers();
+		List<UsuarioEntity> usuarios = usuarioService.getUsers();
 		
-		return new ModelAndView("pages/usuarios").addObject("listaUsuarios", listaUsuarios);
+		return new ModelAndView("pages/usuarios").addObject("usuarios", usuarios);
 	}
 
 }
