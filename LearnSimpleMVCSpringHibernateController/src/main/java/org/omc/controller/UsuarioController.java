@@ -5,6 +5,11 @@ package org.omc.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.omc.controller.form.UserForm;
+import org.omc.controller.parse.UserParseUtil;
 import org.omc.dao.entity.UsuarioEntity;
 import org.omc.service.UsuarioService;
 import org.omc.util.UsuarioException;
@@ -12,7 +17,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -25,6 +32,8 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping(value = "usuario")
 @Controller
 public class UsuarioController {
+	
+
 	
 	@Autowired
 	private UsuarioService usuarioService;
@@ -68,6 +77,16 @@ public class UsuarioController {
 		List<UsuarioEntity> usuarios = usuarioService.getUsers();
 		
 		return new ModelAndView("pages/usuarios").addObject("usuarios", usuarios);
+	}
+	
+	
+	@RequestMapping(value = "saveUser", method = RequestMethod.POST)	
+	public  ModelAndView saveUser(@RequestBody UserForm userForm, BindingResult result,HttpServletRequest request, HttpServletResponse response) {
+		
+		final String  message = usuarioService.saveUser(UserParseUtil.parseUserFormToEntity(userForm));
+		final List<UsuarioEntity> usuarios = usuarioService.getUsers();	
+		
+		return new ModelAndView("pages/usuarios").addObject("usuarios", usuarios).addObject("message", message);
 	}
 
 }

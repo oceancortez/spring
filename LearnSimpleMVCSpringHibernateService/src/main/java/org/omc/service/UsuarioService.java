@@ -37,4 +37,18 @@ public @Service class UsuarioService {
 		// TODO Auto-generated method stub
 		return usuarioDAO.getUsers();
 	}
+
+	public String saveUser(UsuarioEntity usuarioEntity) {
+		String message = "";
+		try {
+			UsuarioEntity entity = usuarioDAO.saveOrUpdate(usuarioEntity);
+			message = "Usuário com id ="+entity.getId()+" foi salvo com sucesso!";
+			
+		} catch (UsuarioException e) {
+			e.printStackTrace();
+			message = e.getMessage();
+		}
+		return message;
+	}
+
 }

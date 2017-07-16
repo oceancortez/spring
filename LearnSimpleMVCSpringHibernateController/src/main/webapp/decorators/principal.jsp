@@ -11,7 +11,7 @@
     	<meta charset="utf-8">	
     	
     	<!-- css -->
-    	
+    	<link rel="stylesheet" media="screen" href='<c:url value="/css/usuario.css"/>'/>
 		<!-- Bootstrap -->
 		<link rel="stylesheet" media="screen" href='<c:url value="/css/bootstrap/bootstrap.min.css"/>'/>
 		<%-- <link rel="stylesheet"  media="screen" href='<c:url value="/css/bootstrap/bootstrap-theme.css"/>'/> --%>
@@ -32,10 +32,17 @@
 	<script type="text/javascript" src='<c:url value="/js/bootstrap/dataTables.bootstrap.js"/>'></script>
 	<script type="text/javascript" src='<c:url value="/js/jquery/jquery.dataTables.pipelining.js"/>'></script>
 	<script type="text/javascript" src='<c:url value="/js/jquery/jquery.doubleScroll.js"/>'></script>
-		
+	<script type="text/javascript" src='<c:url value="/js/main.js"/>'></script>
+	
+	
+	<div id="apiBody" class="apiBody">
+	
+	
 	<!-- Conteudo -->
 	<decorator:body>
 	teste
 	</decorator:body>
+	
+	</div>	
 </body>
 </html>
