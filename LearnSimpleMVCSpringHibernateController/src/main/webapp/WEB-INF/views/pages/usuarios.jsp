@@ -3,9 +3,10 @@
 <h4 class="expand">Consulta Usuarios
     <a href="javascript:void(0)" class="pull-right" title="Clique para ocultar ou exibir o conteúdo">
     <i class="fa fa-angle-up fa-lg"></i>
+    <i class="fa fa-angle-down" aria-hidden="true"></i>
     </a>
 </h4>
-<h3><c:out value="${message}"></c:out></h3>
+<h3 class="show-message"><c:out value="${message}"></c:out></h3>
 <hr>
 <div>
 			    <fieldset class="fieldset-border">
@@ -45,7 +46,7 @@
 			    <div class="clearfix">
 			        <div class="pull-right">
 			             <!-- button type="button" class="btn btn-default btn-sm btn-pesquisar"><i class="fa fa-search fa-fw"></i>Pesquisar</button-->
-			             <button type="button" class="btn btn-default btn-sm btn-cadastrar" data-url-especifica='<c:url value="/cliente/pesquisar"/>'>
+			             <button type="button" class="btn btn-default btn-sm btn-save">
 			             	<i class="fa fa-search fa-fw"></i>
 			             	cadastrar
 			             </button>
@@ -55,16 +56,30 @@
 			</div>
 <hr> 
 
+	<h4 class="expand">
+		Cadastro de Usuário
+		<a href="javascript:void(0)"
+			class="pull-right" title="Clique para ocultar ou exibir o conteúdo"><i
+			class="fa fa-angle-up fa-lg"></i></a>
+	</h4>
+
 <div id="usuarios">
-	<table id="listaUsuarios" class="table table-striped table-hover">
-		<c:if test="${not empty usuarios}">
+<hr style="margin-top: 20px ! important;" class="divider">
+	
+	<c:if test="${not empty usuarios}">
+	<table class="table table-striped table-hover">
 		<tr>
 			<th>id</th>
 			<th>nome</th>
 			<th>email</th>
 			<th>data ultima alteração</th>
 			<th>Action</th>
-		</tr>		
+		</tr>
+		</table>		
+</c:if>
+<c:if test="${not empty usuarios}">
+	<table id="listaUsuarios" class="table table-striped table-hover table-users">
+		
 			<c:forEach items="${usuarios}" var="usuario">
 			<tr>
 				<td>${usuario.id}</td>
@@ -74,7 +89,8 @@
 				<td><a onclick="alert();">Alert</a></td>
 			</tr> 						
 			</c:forEach>		
-		</c:if>
-	</table>		
+	
+	</table>	
+		</c:if>	
 </div>
 <script type="text/javascript" src='<c:url value="/js/usuario.js"/>'></script>

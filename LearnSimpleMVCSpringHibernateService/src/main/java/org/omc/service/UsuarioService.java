@@ -5,6 +5,7 @@ import java.util.List;
 import org.omc.dao.GenericDAO;
 import org.omc.dao.UsuarioDAO;
 import org.omc.dao.entity.UsuarioEntity;
+import org.omc.util.UserOut;
 import org.omc.util.UsuarioException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -38,17 +39,19 @@ public @Service class UsuarioService {
 		return usuarioDAO.getUsers();
 	}
 
-	public String saveUser(UsuarioEntity usuarioEntity) {
-		String message = "";
+	public UserOut saveUser(UsuarioEntity usuarioEntity) {
+		UserOut userOut = new UserOut();
 		try {
 			UsuarioEntity entity = usuarioDAO.saveOrUpdate(usuarioEntity);
-			message = "Usuário com id ="+entity.getId()+" foi salvo com sucesso!";
+			userOut.setMessage("Usuário com id ="+entity.getId()+" foi salvo com sucesso!");
+			userOut.setCodStatus(200);
 			
 		} catch (UsuarioException e) {
 			e.printStackTrace();
-			message = e.getMessage();
+			userOut.setMessage(e.getMessage());
+			userOut.setCodStatus(400);
 		}
-		return message;
+		return userOut;
 	}
 
 }

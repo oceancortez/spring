@@ -8,16 +8,18 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.omc.controller.form.UserForm;
 import org.omc.controller.parse.UserParseUtil;
 import org.omc.dao.entity.UsuarioEntity;
 import org.omc.service.UsuarioService;
+import org.omc.util.UserForm;
+import org.omc.util.UserOut;
 import org.omc.util.UsuarioException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,9 +31,9 @@ import org.springframework.web.servlet.ModelAndView;
  * @author omc
  *
  */
-@RequestMapping(value = "usuario")
+@RequestMapping(value = "user")
 @Controller
-public class UsuarioController {
+public class UserController {
 	
 
 	
@@ -52,14 +54,14 @@ public class UsuarioController {
 	}
 	
 	@RequestMapping(value = "getUsersJson", method = RequestMethod.GET)	
-	public @ResponseBody ResponseEntity<List<UsuarioEntity>> getUsersJson() {
-		List<UsuarioEntity> usuarioById = usuarioService.getUsers();
+	public ResponseEntity<List<UsuarioEntity>> getUsersJson() {
+		List<UsuarioEntity> users = usuarioService.getUsers();
 		
-		return new ResponseEntity<List<UsuarioEntity>>(usuarioById, HttpStatus.CREATED);
+		return new ResponseEntity<List<UsuarioEntity>>(users, HttpStatus.CREATED);
 	}
 	
 	
-	@RequestMapping(value = "saveUser/{nome}/{email}", method = RequestMethod.GET)	
+	@RequestMapping(value = "save/{nome}/{email}", method = RequestMethod.GET)	
 	public @ResponseBody ResponseEntity<String> saveUser(@PathVariable String nome, @PathVariable String email) {
 		UsuarioEntity usuarioById;
 		try {
@@ -80,13 +82,27 @@ public class UsuarioController {
 	}
 	
 	
-	@RequestMapping(value = "saveUser", method = RequestMethod.POST)	
-	public  ModelAndView saveUser(@RequestBody UserForm userForm, BindingResult result,HttpServletRequest request, HttpServletResponse response) {
+	@RequestMapping(value = "saveOLD", method = RequestMethod.POST)	
+	public UserOut saveUser(@RequestBody @ModelAttribute UserForm userForm,
+			BindingResult result,HttpServletRequest request, HttpServletResponse response) {
 		
-		final String  message = usuarioService.saveUser(UserParseUtil.parseUserFormToEntity(userForm));
-		final List<UsuarioEntity> usuarios = usuarioService.getUsers();	
+		//final String  message = usuarioService.saveUser(UserParseUtil.parseUserFormToEntity(userForm));
+		List<UserForm> users = UserParseUtil.parseListUserEntityToForm(usuarioService.getUsers());
 		
-		return new ModelAndView("pages/usuarios").addObject("usuarios", usuarios).addObject("message", message);
+		
+		return new UserOut(null, users, 200);
+	}
+	
+	@RequestMapping(value = "save", method = RequestMethod.POST)	
+	public ResponseEntity<UserOut> usersTest(@ModelAttribute UserForm userForm, BindingResult result) {
+		
+		final UserOut  userOut = usuarioService.saveUser(UserParseUtil.parseUserFormToEntity(userForm));
+		if(userOut.getCodStatus() == 200){
+			List<UserForm> users = UserParseUtil.parseListUserEntityToForm(usuarioService.getUsers());
+			userOut.setUsers(users);
+		}	
+		
+		return new ResponseEntity<UserOut>(userOut, HttpStatus.CREATED);
 	}
 
 }

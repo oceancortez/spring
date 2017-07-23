@@ -51,13 +51,6 @@
 			<artifactId>jstl</artifactId>
 		</dependency>
 
-		<!-- JSON -->
-		<!-- @ResponseBody error 406 apenas incluir esta dependencia -->
-		<dependency>
-			<groupId>com.fasterxml.jackson.core</groupId>
-			<artifactId>jackson-databind</artifactId>
-		</dependency>
-		<!-- @ResponseBody error 406 apenas incluir esta dependencia -->
 		
 		<!-- Gerenciamento de Template -->
 		<dependency>

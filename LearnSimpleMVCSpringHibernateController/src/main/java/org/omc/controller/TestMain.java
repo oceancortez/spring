@@ -36,10 +36,10 @@ public class TestMain {
 	}
 	
 	@RequestMapping(value = "testMainResponseBody", method = RequestMethod.GET, produces = "application/json")
-	public @ResponseBody UsuarioController testMainResponseBody(HttpServletRequest request){
+	public @ResponseBody UserController testMainResponseBody(HttpServletRequest request){
 		
 		//request.setAttribute("inicio", "Teste OK");
-		UsuarioController u = new UsuarioController();
+		UserController u = new UserController();
 	
 		
 		

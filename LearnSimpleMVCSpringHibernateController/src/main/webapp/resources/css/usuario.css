@@ -8,3 +8,9 @@
     margin-left: 150px;
     margin-right: 150px;
 }
+
+.expand a{color: #333;}
+
+.table-users thead th:first-child, .table-users thead th:last-child{ width:40px}
+
+.table-users tbody td{ vertical-align:middle !important}

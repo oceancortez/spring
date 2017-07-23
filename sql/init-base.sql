@@ -9,3 +9,6 @@ ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
 
 select * from omc.usuario;
+delete from  omc.usuario u where id > 1;
+
+DELETE FROM `omc`.`usuario` WHERE `id`>'1';

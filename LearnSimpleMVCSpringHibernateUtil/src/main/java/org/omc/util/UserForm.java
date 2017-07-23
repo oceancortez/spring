@@ -1,7 +1,7 @@
 /**
  * 
  */
-package org.omc.controller.form;
+package org.omc.util;
 
 import java.util.Date;
 
@@ -14,6 +14,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 
 public class UserForm {
 	
+
 
 	private Integer idUsuario;
 	
@@ -98,6 +99,16 @@ public class UserForm {
 	 */
 	public void setIdUsuario(Integer idUsuario) {
 		this.idUsuario = idUsuario;
+	}
+	
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "UserForm [idUsuario=" + idUsuario + ", nome=" + nome + ", email=" + email + ", dtUltAlt=" + dtUltAlt
+				+ ", message=" + message + "]";
 	}
 
 }
