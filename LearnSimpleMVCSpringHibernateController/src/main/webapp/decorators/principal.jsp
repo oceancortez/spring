@@ -14,7 +14,7 @@
     	<link rel="stylesheet" media="screen" href='<c:url value="/css/usuario.css"/>'/>
 		<!-- Bootstrap -->
 		<link rel="stylesheet" media="screen" href='<c:url value="/css/bootstrap/bootstrap.min.css"/>'/>
-		 <link rel="stylesheet"  media="screen" href='<c:url value="/css/bootstrap/bootstrap-theme.css"/>'/>
+		 <link rel="stylesheet"  media="screen" href='<c:url value="/css/bootstrap/bootstrap-theme.min.css"/>'/>
 		<link rel="stylesheet" media="screen" href='<c:url value="/css/bootstrap/datepicker.css"/>'/>
 				
 		<!-- DataTables -->

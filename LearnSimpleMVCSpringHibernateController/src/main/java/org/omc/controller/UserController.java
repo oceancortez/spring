@@ -104,5 +104,14 @@ public class UserController {
 		
 		return new ResponseEntity<UserOut>(userOut, HttpStatus.CREATED);
 	}
+	
+	@RequestMapping(value = "getUsersJqueryDataTable", method = RequestMethod.GET)	
+	public ModelAndView  getUsersJqueryDataTable() {
+		UserOut userOut = new UserOut();
+		List<UserForm> users = UserParseUtil.parseListUserEntityToForm(usuarioService.getUsers());
+		userOut.setUsers(users);
+		
+		return new ModelAndView("pages/users").addObject("userOut", userOut);
+	}
 
 }

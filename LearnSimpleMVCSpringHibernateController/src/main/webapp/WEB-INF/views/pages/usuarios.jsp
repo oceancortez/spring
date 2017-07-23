@@ -93,4 +93,4 @@
 	</table>	
 		</c:if>	
 </div>
-<script type="text/javascript" src='<c:url value="/js/usuario.js"/>'></script>
+<script type="text/javascript" src='<c:url value="/js/user.js"/>'></script>
