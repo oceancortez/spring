@@ -26,7 +26,7 @@ $('.btn-save').on('click', function (){
 		email : $('input[name="email"]').val()
 	};
 	
-    sendPOST('/user/save', data, responseSaveUser);
+    sendPOST('/user/save', data, responseSaveUsuario);
 	console.log(response);
 	
 	$( "usuarios" ).fadeOut( "slow" );
@@ -46,7 +46,7 @@ $('.btn-save').on('click', function (){
 //};
 
 //Get callback  .btn-save atualiza o DOM a table
-function responseSaveUser(data){
+function responseSaveUsuario(data){
 console.log(data);
 $("#listaUsuarios tbody").empty(); 
 $.each(data.users, function (i, user){
@@ -61,6 +61,8 @@ $.each(data.users, function (i, user){
 });
 	
 };
+
+
 
 
 //$('#listaUsuarios').val(data.users).fadeIn('slow', function (){
@@ -100,8 +102,70 @@ $('.expand a').on('click', function (){
 });
 
 
+
+
+$('.btn-save-user').on('click', function (){
+	
+	var data = {
+		idUsuario : $('input[name="idUsuario"]').val(),
+		nome : $('input[name="nome"]').val(),
+		email : $('input[name="email"]').val()
+	};
+	
+    sendPOST('/user/save', data, fetchDataTable);
+	console.log(response);
+	
+	$( "usuarios" ).fadeOut( "slow" );
+
+	
+});
+
+function fetchDataTable(data){
+	//TODO Não está atualizando a table ainda rs
+	$('#usersTable').DataTable().data(data);
+}
+
+
 $(document).ready(function (){
-	$('#usersTable').DataTable();	
+	try {
+	$('#usersTable').DataTable({
+		"ajax": {
+			"url": "/user/getUsersJqueryDataTable",
+			"dataSrc": "users"
+		},
+		"columns":[
+			{data: 'idUsuario'},
+			{data: 'nome'},
+			{data: 'email'},
+			{data: 'dtUltAlt'}
+		],
+		
+	
+		"processing": true,
+		//"serverSide": true,
+		"destroy": true,
+		"searchDelay": 1000,
+		"oLanguage" : {
+			"sProcessing": "Carregando...",
+			"sZeroRecords" : "Nenhum registro encontrado",
+			"sEmptyTable" : "Nenhum registro encontrado",
+			"sSortAscending" : " - click/return to sort ascending ",
+			"sSortDescending" : " - click/return to sort descending ",
+			"sInfo" : " Mostrando _START_ a _END_ de um total de _TOTAL_ registros",
+			"sInfoEmpty" : "",
+			"sInfoFiltered" : " (filtrada de _MAX_ registros)",
+			"sLengthMenu" : "Exibir _MENU_ registros",
+			"oPaginate" : {
+				"sFirst" : "<<",
+				"sLast" : ">>",
+				"sNext" : ">",
+				"sPrevious" : "<"
+			}
+		},
+	});	
+	}catch (e){
+		alert(e);
+	};
 });
 
 

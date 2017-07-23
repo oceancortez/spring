@@ -46,7 +46,7 @@
 			    <div class="clearfix">
 			        <div class="pull-right">
 			             <!-- button type="button" class="btn btn-default btn-sm btn-pesquisar"><i class="fa fa-search fa-fw"></i>Pesquisar</button-->
-			             <button type="button" class="btn btn-default btn-sm btn-save">
+			             <button type="button" class="btn btn-default btn-sm btn-save-user">
 			             	<i class="fa fa-search fa-fw"></i>
 			             	cadastrar
 			             </button>
@@ -80,7 +80,7 @@
 							</tr>
 						
 						</thead>		
-			<tbody>
+			<%-- <tbody>
 						
 							<c:forEach items="${userOut.users}" var="user"> 
 						<tr>
@@ -91,7 +91,7 @@
 						</tr>
 							</c:forEach>
 						
-			</tbody>
+			</tbody> --%>
 			</table>
 		</div>
 		</div>

@@ -106,11 +106,19 @@ public class UserController {
 	}
 	
 	@RequestMapping(value = "getUsersJqueryDataTable", method = RequestMethod.GET)	
-	public ModelAndView  getUsersJqueryDataTable() {
+	@ResponseBody
+	public UserOut  getUsersJqueryDataTable() {
 		UserOut userOut = new UserOut();
 		List<UserForm> users = UserParseUtil.parseListUserEntityToForm(usuarioService.getUsers());
 		userOut.setUsers(users);
 		
+		return userOut;
+	}
+	
+	@RequestMapping(value = "getUsersJquery", method = RequestMethod.GET)	
+	public ModelAndView  getUsersJquery() {
+		UserOut userOut = new UserOut();
+			
 		return new ModelAndView("pages/users").addObject("userOut", userOut);
 	}
 
