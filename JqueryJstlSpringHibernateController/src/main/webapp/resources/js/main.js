@@ -135,10 +135,16 @@ function sendGET(url){
 
 function enviarMsgAlerta(msg){
 	 $('h4:first').before('<div class="alert alert-danger validacaoAssistencia"><button type="button" class="close">&times;</button>'+ msg + '</div>');
+	 setTimeout(function(){
+		 $('.validacaoAssistencia').hide();
+	 }, 2500);
 };
 
 function sendMessageSuccess(msg){
 	 $('h4:first').before('<div class="alert alert-success validacaoAssistencia"><button type="button" class="close">&times;</button>'+ msg + '</div>');
+	 setTimeout(function(){
+		 $('.validacaoAssistencia').hide();
+	 }, 2500);
 };
 
 $(document.body).on('click','div[class*="alert"] .close', function(){
