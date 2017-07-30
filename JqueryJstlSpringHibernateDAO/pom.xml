@@ -3,15 +3,15 @@
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>org.omc</groupId>
-		<artifactId>LearnSimpleMVCSpringHibernate</artifactId>
+		<artifactId>JqueryJstlSpringHibernate</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
-	<artifactId>LearnSimpleMVCSpringHibernateDAO</artifactId>
+	<artifactId>JqueryJstlSpringHibernateDAO</artifactId>
 
 	<dependencies>
 		<dependency>
 			<groupId>org.omc</groupId>
-			<artifactId>LearnSimpleMVCSpringHibernateUtil</artifactId>
+			<artifactId>JqueryJstlSpringHibernateUtil</artifactId>
 		</dependency>
 
 		<!-- Driver JDBC -->

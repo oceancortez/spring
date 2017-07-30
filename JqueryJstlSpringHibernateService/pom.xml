@@ -2,16 +2,16 @@
   <modelVersion>4.0.0</modelVersion>
   <parent>
     <groupId>org.omc</groupId>
-    <artifactId>LearnSimpleMVCSpringHibernate</artifactId>
+    <artifactId>JqueryJstlSpringHibernate</artifactId>
     <version>0.0.1-SNAPSHOT</version>
   </parent>
-  <artifactId>LearnSimpleMVCSpringHibernateService</artifactId>
+  <artifactId>JqueryJstlSpringHibernateService</artifactId>
   
     <dependencies>
   
 	<dependency>
 		<groupId>org.omc</groupId>		
-		<artifactId>LearnSimpleMVCSpringHibernateDAO</artifactId>
+		<artifactId>JqueryJstlSpringHibernateDAO</artifactId>
 	</dependency>  
   
   </dependencies>

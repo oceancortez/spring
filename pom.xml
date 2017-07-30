@@ -2,15 +2,15 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.omc</groupId>
-	<artifactId>LearnSimpleMVCSpringHibernate</artifactId>
+	<artifactId>JqueryJstlSpringHibernate</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<modules>
 
-		<module>LearnSimpleMVCSpringHibernateService</module>
-		<module>LearnSimpleMVCSpringHibernateDAO</module>
-		<module>LearnSimpleMVCSpringHibernateController</module>
-		<module>LearnSimpleMVCSpringHibernateUtil</module>
+		<module>JqueryJstlSpringHibernateService</module>
+		<module>JqueryJstlSpringHibernateDAO</module>
+		<module>JqueryJstlSpringHibernateController</module>
+		<module>JqueryJstlSpringHibernateUtil</module>
 	</modules>
 
 	<developers>
@@ -36,25 +36,25 @@
 		<dependencies>
 			<dependency>
 				<groupId>${project.groupId}</groupId>
-				<artifactId>LearnSimpleMVCSpringHibernateController</artifactId>
+				<artifactId>JqueryJstlSpringHibernateController</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 
 			<dependency>
 				<groupId>${project.groupId}</groupId>
-				<artifactId>LearnSimpleMVCSpringHibernateService</artifactId>
+				<artifactId>JqueryJstlSpringHibernateService</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 
 			<dependency>
 				<groupId>${project.groupId}</groupId>
-				<artifactId>LearnSimpleMVCSpringHibernateDAO</artifactId>
+				<artifactId>JqueryJstlSpringHibernateDAO</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 
 			<dependency>
 				<groupId>${project.groupId}</groupId>
-				<artifactId>LearnSimpleMVCSpringHibernateUtil</artifactId>
+				<artifactId>JqueryJstlSpringHibernateUtil</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 

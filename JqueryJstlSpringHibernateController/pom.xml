@@ -3,17 +3,17 @@
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>org.omc</groupId>
-		<artifactId>LearnSimpleMVCSpringHibernate</artifactId>
+		<artifactId>JqueryJstlSpringHibernate</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
-	<artifactId>LearnSimpleMVCSpringHibernateController</artifactId>
+	<artifactId>JqueryJstlSpringHibernateController</artifactId>
 	<packaging>war</packaging>
 
 	<dependencies>
 
 		<dependency>
 			<groupId>org.omc</groupId>
-			<artifactId>LearnSimpleMVCSpringHibernateService</artifactId>
+			<artifactId>JqueryJstlSpringHibernateService</artifactId>
 		</dependency>
 
 		<!-- Spring -->
@@ -62,7 +62,7 @@
 	</dependencies>
 
 	<build>
-		<finalName>LearnSimpleMVCSpringHibernate</finalName>
+		<finalName>JqueryJstlSpringHibernate</finalName>
 		<plugins>
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
