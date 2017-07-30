@@ -48,6 +48,7 @@
 	teste
 	</decorator:body>
 	
+	<!-- <div class="loader"></div> -->
 	</div>	
 </body>
 </html>

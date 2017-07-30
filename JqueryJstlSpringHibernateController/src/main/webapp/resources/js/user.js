@@ -112,18 +112,17 @@ $('.btn-save-user').on('click', function (){
 		email : $('input[name="email"]').val()
 	};
 	
-    sendPOST('/user/save', data, fetchDataTable);
-	console.log(response);
-	
-	$( "usuarios" ).fadeOut( "slow" );
-
-	
+    sendPOST('/user/save', data, fetchDataTable);	
 });
 
-function fetchDataTable(data){
-	//TODO Não está atualizando a table ainda rs
-	$('#usersTable').DataTable().data(data);
-}
+function fetchDataTable() {
+	var table = $('#usersTable').DataTable();
+	setTimeout( function () {
+		 table.ajax.reload();		
+		 	$( '.form-create-user input').val('');		 
+		 
+	}, 100);
+};
 
 
 $(document).ready(function (){
@@ -144,7 +143,7 @@ $(document).ready(function (){
 		"processing": true,
 		//"serverSide": true,
 		"destroy": true,
-		"searchDelay": 1000,
+		"searchDelay": 500,
 		"oLanguage" : {
 			"sProcessing": "Carregando...",
 			"sZeroRecords" : "Nenhum registro encontrado",
@@ -163,10 +162,32 @@ $(document).ready(function (){
 			}
 		},
 	});	
+	
 	}catch (e){
 		alert(e);
 	};
 });
+
+function ajax(){
+	
+	$(document).ajaxStart(function() {
+		$.blockUI({
+			overlayCSS : {
+				opacity : .5,
+				backgroundColor : '#000'
+			},
+			css : {
+				top : '50%'
+			}
+		});
+		
+	}).ajaxStop(function() {
+		setTimeout($.unblockUI, 1000);
+		
+	}).ajaxError(function() {
+		redirecionaErro();
+	});
+};
 
 
 

@@ -61,8 +61,9 @@ function sendPOST(url, data, callback){
 			if(response.codStatus == '200'){
 				console.log(response);
 				sendMessageSuccess(response.message);
-				callback(response);
-				//$('#usuarios').html(div);
+				if(callback){
+					callback(response);					
+				}
 			}else {	
 				enviarMsgAlerta(response.message);
 				console.log(response.message);
@@ -72,6 +73,16 @@ function sendPOST(url, data, callback){
 	
 };
 
+
+function fetchDataTable(tableName, formName) {
+	var table = $(tableName).DataTable();
+	setTimeout( function () {
+		 table.ajax.reload();
+		 if(formName){
+			 $(formName + ' input').val('');			 
+		 }
+	}, 300);
+};
 
 
 function sendPOSTOLD(url, data, callback){

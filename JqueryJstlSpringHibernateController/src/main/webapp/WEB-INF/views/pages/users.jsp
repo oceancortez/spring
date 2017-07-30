@@ -8,7 +8,7 @@
 </h4>
 <h3 class="show-message"><c:out value="${message}"></c:out></h3>
 <hr>
-<div>
+<div>	<div class="form-create-user">
 			    <fieldset class="fieldset-border">
 			    	<legend class="legend-border">Cadastro de Usuário</legend>
 			        <div class="row">
@@ -54,6 +54,7 @@
 			    </div>
 			    <hr style="margin-top: 20px ! important;" class="divider">
 			</div>
+	</div>		
 <hr> 
 
 	<h4 class="expand">
