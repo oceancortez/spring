@@ -1,3 +1,5 @@
+CREATE database omc; 
+
 CREATE TABLE `omc`.`usuario` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `nome` VARCHAR(45) NOT NULL,

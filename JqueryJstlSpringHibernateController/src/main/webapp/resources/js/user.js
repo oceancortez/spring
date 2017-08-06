@@ -26,7 +26,7 @@ $('.btn-save').on('click', function (){
 		email : $('input[name="email"]').val()
 	};
 	
-    sendPOST('/user/save', data, responseSaveUsuario);
+    sendPOST('/JqueryJstlSpringHibernate/user/save', data, responseSaveUsuario);
 	console.log(response);
 	
 	$( "usuarios" ).fadeOut( "slow" );
@@ -112,7 +112,7 @@ $('.btn-save-user').on('click', function (){
 		email : $('input[name="email"]').val()
 	};
 	
-    sendPOST('/user/save', data, fetchDataTable);	
+    sendPOST('/JqueryJstlSpringHibernate/user/save', data, fetchDataTable);	
 });
 
 function fetchDataTable() {
@@ -129,7 +129,7 @@ $(document).ready(function (){
 	try {
 	$('#usersTable').DataTable({
 		"ajax": {
-			"url": "/user/getUsersJqueryDataTable",
+			"url": "/JqueryJstlSpringHibernate/user/getUsersJqueryDataTable",
 			"dataSrc": "users"
 		},
 		"columns":[

@@ -33,7 +33,7 @@ import org.springframework.web.servlet.ModelAndView;
  */
 @RequestMapping(value = "user")
 @Controller
-public class UserController {
+public class UserController extends BaseController {
 	
 
 	
